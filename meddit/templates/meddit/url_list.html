@@ -1,0 +1,20 @@
+{% extends 'meddit/base.html' %}
+
+{% block content %}
+    {% for url in urls %}
+        <div class="post">
+            <div class="date">
+	            <a class="btn btn-default" href="{% url 'url_edit' ext=url.extension %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	        	<a class="btn btn-default" href="{% url 'url_remove' ext=url.extension %}"><span class="glyphicon glyphicon-remove"></span></a>	
+                {{ url.created_date }}
+            </div>
+            <h1>
+            <a href="{% url 'url_redirect' ext=url.extension %}">{{ url.title }}</a>
+            </h1>
+            <a href="mailto:{{ url.author.email }}">{{ url.author }}</a>
+            {% comment  %}
+                <p> {{ url.author |linebreaks }}</p>
+            {% endcomment %}
+        </div>
+    {% endfor %}
+{% endblock content %}

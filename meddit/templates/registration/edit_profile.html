@@ -1,0 +1,10 @@
+{% extends 'meddit/base.html' %}
+
+{% block content %}
+    <a href="{% url 'password_change' %}" class="save btn btn-default" alt="lol"  ><span class="glyphicon glyphicon-lock"></span></a>
+    <h1>Edit Profile</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
