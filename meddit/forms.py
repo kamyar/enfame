@@ -33,6 +33,15 @@ class UpdateProfile(forms.ModelForm):
             raise forms.ValidationError('This email address is already in use. Please supply a different email address.')
         return email
 
+class RegisterForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+
+
     # def save(self, commit=True):
     #     user = super(RegistrationForm, self).save(commit=False)
     #     user.email = self.cleaned_data['email']

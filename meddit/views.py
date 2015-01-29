@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, UrlEntry
-from .forms import PostForm, UrlForm, UpdateProfile
+from .forms import PostForm, UrlForm, UpdateProfile, RegisterForm
 from .decorators import user_owns_url_or_admin
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required #, permission_required
 from django.contrib.auth.models import User
-from django.core.exceptions import PermissionDenied
+
 
 
 @login_required
@@ -90,7 +90,22 @@ def view_profile(request, pk=None):
     else:
         user = request.user
     return render(request, 'registration/profile.html', {'user': user})
-    
+
+
+# def registerUser(request):
+#     print "hello"
+#     # context = RequestContext(request)
+#     registered = False
+#     if request.method == 'POST':
+#         newUser = RegisterUser(request.POST)
+#         if newUser.is_valid():
+#             user.set_password(newUser.password)
+#             user.save()
+#             registered = True
+#         #raise something here, form is not valid
+#     else:
+#         newUser = RegisterUser(instance = None)
+#     render('registration/register.html', {'newUser' : newUser, 'registered' : registered}, context)
 
 ###########################################################################################
 ###                                  URL SHORTENER VIEWS                                ###
@@ -140,6 +155,7 @@ def url_redirect(request, ext):
     url = get_object_or_404(UrlEntry, extension=ext)
     # url = UrlEntry.objects.get(extension=ext)
     return redirect(to=url.address)
+
 @user_owns_url_or_admin
 @login_required
 def url_remove(request, ext):

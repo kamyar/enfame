@@ -17,6 +17,7 @@
             <p class="top-menu">Hello <a href="{% url 'meddit.views.view_profile' pk='' %}"> {{ user.username }} </a> <small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
 
             {% else %}
+            <a href="{% url 'register_view' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
             <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
             <h1><a href="{% url 'meddit.views.show_urls' %}">Enfame link shortener</a></h1>
