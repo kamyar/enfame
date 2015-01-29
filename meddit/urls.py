@@ -2,7 +2,8 @@ from django.conf.urls import patterns, url #, include
 from . import views
 #from django.contrib.auth.views import password_change
 from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
 from .decorators import anonymous_required
 # from .forms import RegisterForm
 
@@ -25,7 +26,7 @@ urlpatterns = patterns('',
 	        views.update_successful),
     url(r'^r/(?P<ext>\w{0,100})$', views.url_redirect, name='url_redirect'),
 	url('^register/', anonymous_required(
-						 CreateView.as_view(template_name='registration/register.html', form_class=UserCreationForm,
+						 CreateView.as_view(template_name='registration/register.html', form_class=RegisterForm,
 	            success_url='/')), name='register_view'),
 
 
