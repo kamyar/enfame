@@ -1,3 +1,2 @@
-no register if already logged in 	-> add decorator
 add email 							-> write usercreation subclass
 remove post model

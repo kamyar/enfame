@@ -12,15 +12,6 @@ def user_owns_url_or_admin(function):
         return _wrapped_view
     return decorator(function)
 
-# def anon_user_only(function):
-#     def decorator(function):
-#         def _wrapped_view(request, *args, **kwargs):
-#             url = get_object_or_404(UrlEntry, extension=kwargs['ext'])
-#             if not request.user.is_superuser and url.author != request.user:
-#                 raise PermissionDenied()
-#             return function(request, *args, **kwargs)
-#         return _wrapped_view
-#     return decorator(function)
 
 #decorator for non-logged-in users only views. e.g. register, change_pwd...
 def anonymous_required(function):
